@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/itemOnibus"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Onibus" />
+        <item
+            android:id="@+id/itemHorarios"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Horarios" />
+        <item
+            android:id="@+id/itemPontos"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Pontos" />
+
+        <item
+            android:id="@+id/itemMensagens"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Mensagens" />
+
+        <item
+            android:id="@+id/itemVoltar"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Voltar" />
+    </group>
+
+</menu>
