@@ -2,14 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/itemOnibus"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Onibus" />
+            android:id="@+id/itemHome"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Home" />
         <item
-            android:id="@+id/itemHorarios"
+            android:id="@+id/itemHorariosSegunda"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Horarios" />
+
         <item
             android:id="@+id/itemPontos"
             android:icon="@drawable/ic_menu_slideshow"
@@ -19,11 +21,12 @@
             android:id="@+id/itemMensagens"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Mensagens" />
-
         <item
             android:id="@+id/itemVoltar"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="Voltar" />
+
+
     </group>
 
 </menu>

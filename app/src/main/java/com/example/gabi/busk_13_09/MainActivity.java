@@ -11,8 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.gabi.busk_13_09.Fragments.Fragment_Lista_Onibus;
-import com.example.gabi.busk_13_09.Fragments.Fragment_mapa;
+import Fragments.Fragment_Lista_Onibus;
+import Fragments.Fragment_Main;
+import Fragments.Fragment_Mensagens;
+import Fragments.mapas;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -21,18 +24,24 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+      Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+      setSupportActionBar(toolbar);
 
+        FragmentManager fm = getFragmentManager();
 
+        Bundle bundle = new Bundle();
+        bundle.putString("idOnibus", "-1" );
+        Fragment_Main fragInfo = new Fragment_Main();
+        fragInfo.setArguments(bundle);
+        fm.beginTransaction().replace(R.id.content_frame, fragInfo).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+       ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+               this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+       drawer.setDrawerListener(toggle);
+       toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+       NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -75,10 +84,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.itemOnibus) {
-            fm.beginTransaction()
-                    .replace(R.id.content_frame, new Fragment_mapa())
-                    .commit();
+        if (id == R.id.itemHome) {
+
+            // Handle navigation view item clicks here.
+
+            Bundle bundle = new Bundle();
+            bundle.putString("idOnibus", "-1" );
+            Fragment_Main fragInfo = new Fragment_Main();
+            fragInfo.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.content_frame, fragInfo).commit();
             // Handle the camera action
         }  else if (id == R.id.itemListaOnibus) {
             fm.beginTransaction()
@@ -86,13 +100,29 @@ public class MainActivity extends AppCompatActivity
                     .commit();
 
         }
+        if (id == R.id.itemMensagensMain) {
+
+
+            Bundle bundle = new Bundle();
+            bundle.putString("idOnibus", "-1" );
+            Fragment_Mensagens fragInfo = new Fragment_Mensagens();
+            fragInfo.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.content_frame, fragInfo).commit();
+
+        }
+
+        if (id == R.id.itemOnibus) {
+
+
+            mapas fragInfo = new mapas();
+            fm.beginTransaction().replace(R.id.content_frame, fragInfo).commit();
+        }
 
 
 
 
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

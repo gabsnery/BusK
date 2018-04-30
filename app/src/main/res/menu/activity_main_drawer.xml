@@ -13,9 +13,14 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Lista de onibus" />
         <item
-            android:id="@+id/itemVoltar"
+            android:id="@+id/itemMensagensMain"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Voltar" />
+            android:title="Mensagens" />
+        <item
+            android:id="@+id/itemOnibus"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Que onibus?" />
+
 
     </group>
 

@@ -1,11 +1,13 @@
 package com.example.gabi.busk_13_09;
 
-import com.example.gabi.busk_13_09.POJO.ObjHorario;
-import com.example.gabi.busk_13_09.POJO.ObjOnibus;
-import com.example.gabi.busk_13_09.POJO.ObjPonto;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import POJO.ObjHorario;
+import POJO.ObjMensagem;
+import POJO.ObjOnibus;
+import POJO.ObjPonto;
 import retrofit.Callback;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
@@ -31,6 +33,8 @@ import retrofit.http.POST;
         @GET("/retornaListaOnibus.php")
         void getBuses(Callback<List<ObjOnibus>> response);
 
+        @GET("/retornaTodosPontos.php")
+        void getPontos(Callback<List<ObjPonto>> response);
 
 
         @FormUrlEncoded
@@ -38,12 +42,19 @@ import retrofit.http.POST;
         void retornaHorarios(@Field("json") String json, Callback<List<ObjHorario>> callBack);
 
         @FormUrlEncoded
-        @POST("/retornaOnibus.php")
-        void selectOnibus(@Field("json") String json, Callback<ObjOnibus> callBack);
+        @POST("/retornaListaMensagens.php")
+        void retornaMensagens(@Field("json") String json, Callback<List<ObjMensagem>> callBack);
+
+
+
+        @FormUrlEncoded
+        @POST("/insereMensagem.php")
+        void insereMensagem(@Field("json") String json, Callback<String> callback);
 
         @FormUrlEncoded
         @POST("/retornaListaPontos.php")
-        void retornaPontos(@Field("json") String json, Callback<List<ObjPonto>> callBack);
+        void retornaPontos(@Field("json") String json, Callback<ArrayList<ObjPonto>> callBack);
+
 
     }
 

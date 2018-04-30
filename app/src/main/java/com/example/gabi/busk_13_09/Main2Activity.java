@@ -12,13 +12,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.gabi.busk_13_09.Fragments.Fragment_Dados_Onibus;
-import com.example.gabi.busk_13_09.Fragments.Fragment_Horarios;
-import com.example.gabi.busk_13_09.Fragments.Fragment_mapa;
+import java.util.ArrayList;
+
+import Fragments.Fragment_Horarios;
+import Fragments.Fragment_Main_Onibus;
+import Fragments.Fragment_Mensagens;
+import Fragments.Fragment_mapa;
+import POJO.ObjPonto;
+
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     String id_onibus;
+    ArrayList<ObjPonto> lista=null;
+    String nome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,15 +44,18 @@ public class Main2Activity extends AppCompatActivity
 
         Intent intent = getIntent();
         id_onibus = intent.getStringExtra("id_onibus");
-
+        nome = intent.getStringExtra("nome");
+        this.setTitle(nome);
         FragmentManager fm = getFragmentManager();
         // Handle navigation view item clicks here.
 
         Bundle bundle = new Bundle();
         bundle.putString("idOnibus", id_onibus );
-        Fragment_Dados_Onibus fragInfo = new Fragment_Dados_Onibus();
+        Fragment_Main_Onibus fragInfo = new Fragment_Main_Onibus();
         fragInfo.setArguments(bundle);
         fm.beginTransaction().replace(R.id.content_frame2, fragInfo).commit();
+
+
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -89,23 +99,48 @@ public class Main2Activity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if (id == R.id.itemHome) {
+            FragmentManager fm = getFragmentManager();
+            Bundle bundle = new Bundle();
+            bundle.putString("idOnibus", id_onibus );
+            Fragment_Main_Onibus fragInfo = new Fragment_Main_Onibus();
+            fragInfo.setArguments(bundle);
 
-        if (id == R.id.itemHorarios) {
+            fm.beginTransaction().replace(R.id.content_frame2, fragInfo).commit();
+        }
+
+        if (id == R.id.itemHorariosSegunda) {
             FragmentManager fm = getFragmentManager();
             Bundle bundle = new Bundle();
             bundle.putString("idOnibus", String.valueOf(id_onibus));
+            bundle.putString("idDia", String.valueOf(0));
             Fragment_Horarios fragInfo = new Fragment_Horarios();
             fragInfo.setArguments(bundle);
             fm.beginTransaction().replace(R.id.content_frame2, fragInfo).commit();
         }
+        if (id == R.id.itemVoltar) {
+            finish();
+        }
         if (id == R.id.itemPontos) {
+
+
             FragmentManager fm = getFragmentManager();
+
             Bundle bundle = new Bundle();
             bundle.putString("idOnibus", String.valueOf(id_onibus));
             Fragment_mapa fragInfo = new Fragment_mapa();
             fragInfo.setArguments(bundle);
             fm.beginTransaction().replace(R.id.content_frame2, fragInfo).commit();
         }
+        if (id == R.id.itemMensagens) {
+            FragmentManager fm = getFragmentManager();
+            Bundle bundle = new Bundle();
+            bundle.putString("idOnibus", String.valueOf(id_onibus));
+            Fragment_Mensagens fragInfo = new Fragment_Mensagens();
+            fragInfo.setArguments(bundle);
+            fm.beginTransaction().replace(R.id.content_frame2, fragInfo).commit();
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
